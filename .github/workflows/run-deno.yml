@@ -1,0 +1,19 @@
+name: Deno run script
+
+  on:
+    push:
+      branches: [main]
+
+  jobs:
+    run:
+      steps:
+        - name: Set up repo
+          uses: actions/checkout@v2
+
+        - name: Set up Deno
+          uses: denolib/setup-deno@v2
+          with:
+            deno-version: v1.x
+
+        - name: Cache Dependencies
+          run: deno run --allow-env ./main.ts
